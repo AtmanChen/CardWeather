@@ -6,6 +6,7 @@
 //  Copyright © 2018年 黄永乐. All rights reserved.
 //
 import Foundation
+import ObjectMapper
 
 private let baseUrl = "https://ali-weather.showapi.com/"
 private let appCode = "9868bce1b60247f7ba4773e5eb5f55e8"
@@ -43,13 +44,25 @@ struct WeatherAPIManager {
                     let apiBody = body["showapi_res_body"] as? [String: AnyObject]
                     switch requestType {
                     case .forecast:
-                        print(apiBody ?? [:])
+                        let emptyModels: [WeatherForecastModel] = []
+                        if let daysList = apiBody!["dayList"] as? [[String: String]] {
+                            let weatherModels: [WeatherForecastModel] = Mapper<WeatherForecastModel>().mapArray(JSONObject: daysList) ?? []
+                            success(weatherModels as! M)
+                        } else {
+                            success(emptyModels as! M)
+                        }
                     case .today:
-                        print(apiBody ?? [:])
+                        let emptyModels: [TodayWeatherModel] = []
+                        if let hourList = apiBody!["hourList"] as? [[String: String]] {
+                            let todayModels: [TodayWeatherModel] = Mapper<TodayWeatherModel>().mapArray(JSONObject: hourList) ?? []
+                            success(todayModels as! M)
+                        } else {
+                            success(emptyModels as! M)
+                        }
                     }
                     
                 } else {
-                    fail("解析失败")
+                    fail("数据解析失败")
                 }
             }
         }
