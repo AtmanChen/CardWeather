@@ -9,12 +9,24 @@
 import Foundation
 import UIKit
 
+enum CurrentDayTime: String {
+    case dayTime = ""
+    case night = "night"
+}
+
 extension Date {
+    
     static func todayTitle() -> String {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = String.simpleDateFormatter
         let today = Date()
         return dateFormatter.string(from: today)
+    }
+    
+    static var dayTime: CurrentDayTime {
+        let currentTime = Date().hour()
+        let isNight = currentTime >= 18
+        return isNight ? .night : .dayTime
     }
 }
 
@@ -56,6 +68,13 @@ extension Date {
         let com = calendar.dateComponents([.year,.month,.day], from: self)
         return com.day!
         
+    }
+    
+    // MARK: 时
+    func hour() -> Int {
+        let calendar = NSCalendar.current
+        let com = calendar.dateComponents([.hour], from: self)
+        return com.hour!
     }
     //MARK: 星期几
     func weekDay()->Int{

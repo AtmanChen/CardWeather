@@ -20,6 +20,7 @@ import ObjectMapper
  "wind_power" = "0-3\U7ea7 \U5fae\U98ce  <5.4m/s";
  */
 
+
 struct TodayWeatherModel: Mappable {
     var area: String?
     var temperature: String?
@@ -28,7 +29,7 @@ struct TodayWeatherModel: Mappable {
     var weatherCode: String?
     var windDirection: String?
     var windPower: String?
-    
+    var dayTime: CurrentDayTime = Date.dayTime
     init?(map: Map) {
         
     }
@@ -41,5 +42,25 @@ struct TodayWeatherModel: Mappable {
         weatherCode      <- map["weather_code"]
         windDirection    <- map["wind_direction"]
         windPower        <- map["wind_power"]
+    }
+}
+
+extension TodayWeatherModel {
+    
+    var toEnglish: String {
+        if let weather = weather {
+            if weather.contains("雨") {
+                return "rain"
+            } else if weather.contains("雪") {
+                return "snow"
+            } else {
+                return "cloud"
+            }
+        }
+        return ""
+    }
+    
+    var imageName: String {
+        return toEnglish + dayTime.rawValue + "_bg"
     }
 }

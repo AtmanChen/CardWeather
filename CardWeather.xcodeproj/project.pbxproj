@@ -10,6 +10,8 @@
 		3D6930C2903618ED24F44823 /* Pods_CardWeatherUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E07C01545F2911C2E1208020 /* Pods_CardWeatherUITests.framework */; };
 		90377D9EF307A1C28DE31BB1 /* Pods_CardWeather.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0DF79716DF7FF61B357DD51A /* Pods_CardWeather.framework */; };
 		96C84D82019A729CC3A586D9 /* Pods_CardWeatherTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6981363ADA34B0555D5DA343 /* Pods_CardWeatherTests.framework */; };
+		CF21410F202B8CB60053DE1B /* UIView+ParallexExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF21410E202B8CB60053DE1B /* UIView+ParallexExtension.swift */; };
+		CF214111202B8FD50053DE1B /* CityWeatherCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF214110202B8FD50053DE1B /* CityWeatherCollectionViewCell.swift */; };
 		CF43B1A12025B8EA001FA4DD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF43B1A02025B8EA001FA4DD /* AppDelegate.swift */; };
 		CF43B1A32025B8EA001FA4DD /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF43B1A22025B8EA001FA4DD /* HomeViewController.swift */; };
 		CF43B1A62025B8EA001FA4DD /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CF43B1A42025B8EA001FA4DD /* Main.storyboard */; };
@@ -53,6 +55,8 @@
 		7A950D3A3C0207DF5FA20425 /* Pods-CardWeatherUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CardWeatherUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-CardWeatherUITests/Pods-CardWeatherUITests.release.xcconfig"; sourceTree = "<group>"; };
 		B2D9DB88815F0A29B4A875CB /* Pods-CardWeather.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CardWeather.debug.xcconfig"; path = "Pods/Target Support Files/Pods-CardWeather/Pods-CardWeather.debug.xcconfig"; sourceTree = "<group>"; };
 		C3DE9A9A5898C4916980A5AE /* Pods-CardWeather.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CardWeather.release.xcconfig"; path = "Pods/Target Support Files/Pods-CardWeather/Pods-CardWeather.release.xcconfig"; sourceTree = "<group>"; };
+		CF21410E202B8CB60053DE1B /* UIView+ParallexExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+ParallexExtension.swift"; sourceTree = "<group>"; };
+		CF214110202B8FD50053DE1B /* CityWeatherCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CityWeatherCollectionViewCell.swift; sourceTree = "<group>"; };
 		CF43B19D2025B8EA001FA4DD /* CardWeather.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CardWeather.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CF43B1A02025B8EA001FA4DD /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CF43B1A22025B8EA001FA4DD /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
@@ -197,6 +201,7 @@
 			isa = PBXGroup;
 			children = (
 				CFCC0B2A2026F82700D854A5 /* CustomRotateButtonItem.swift */,
+				CF214110202B8FD50053DE1B /* CityWeatherCollectionViewCell.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -218,6 +223,7 @@
 				CFCC0B262026BCD500D854A5 /* UIColor+Extension.swift */,
 				CFCC0B282026F5F600D854A5 /* Date+Extension.swift */,
 				CFCC0B2C20272BC500D854A5 /* Int+Extension.swift */,
+				CF21410E202B8CB60053DE1B /* UIView+ParallexExtension.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -551,8 +557,10 @@
 				CF43B1DE2025E766001FA4DD /* TodayWeatherModel.swift in Sources */,
 				CF43B1A92025B8EA001FA4DD /* CardWeather.xcdatamodeld in Sources */,
 				CF43B1DA2025C1D2001FA4DD /* WeatherApiTool.swift in Sources */,
+				CF21410F202B8CB60053DE1B /* UIView+ParallexExtension.swift in Sources */,
 				CF43B1A32025B8EA001FA4DD /* HomeViewController.swift in Sources */,
 				CFCC0B252026B45D00D854A5 /* UINavigationController+Extension.swift in Sources */,
+				CF214111202B8FD50053DE1B /* CityWeatherCollectionViewCell.swift in Sources */,
 				CFCC0B2D20272BC500D854A5 /* Int+Extension.swift in Sources */,
 				CF43B1A12025B8EA001FA4DD /* AppDelegate.swift in Sources */,
 				CF43B1DC2025C2AE001FA4DD /* WeatherForecastModel.swift in Sources */,
@@ -725,12 +733,14 @@
 			baseConfigurationReference = B2D9DB88815F0A29B4A875CB /* Pods-CardWeather.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 7V58U7PTNS;
 				INFOPLIST_FILE = "$(SRCROOT)/CardWeather/SupportingFiles/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.samadhihuang.CardWeather;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				USER_HEADER_SEARCH_PATHS = "$(PODS_ROOT)/**";
@@ -742,12 +752,14 @@
 			baseConfigurationReference = C3DE9A9A5898C4916980A5AE /* Pods-CardWeather.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 7V58U7PTNS;
 				INFOPLIST_FILE = "$(SRCROOT)/CardWeather/SupportingFiles/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.samadhihuang.CardWeather;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				USER_HEADER_SEARCH_PATHS = "$(PODS_ROOT)/**";
